@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
@@ -109,3 +110,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto ${PORT}`);
 });
+=======
+
+>>>>>>> b96bb9f33ccb95f45b5aae3e42cce97f1610e1de
