@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs del Servidor</title>
+    <link rel="stylesheet" href="style1.css">
+    <script>
+        // Verificar autenticación antes de cargar la página
+        fetch('/api/verificar-sesion')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.autenticado) {
+                    window.location.href = 'login.html'; // Redirigir si no está autenticado
+                }
+            })
+            .catch(error => console.error('Error al verificar sesión:', error));
+    </script>
+</head>
+<div class="container">
+    <div id="breadcrumbs-container"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+// Clave para almacenar los breadcrumbs en localStorage
+const breadcrumbsKey = "breadcrumbs";
+
+// Leer o inicializar el array de breadcrumbs
+let breadcrumbs = JSON.parse(localStorage.getItem(breadcrumbsKey)) || [];
+
+// Datos de la página actual:
+// Utilizamos document.title para el texto (asegúrate de definirlo en cada página)
+const currentTitle = document.title || "Página";
+const currentUrl = window.location.pathname;
+
+// Si el usuario se encuentra en la página de inicio ("/" o "/index.html"),
+// reiniciamos el historial a solo "Inicio".
+if (currentUrl === "/" || currentUrl === "/index.html") {
+  breadcrumbs = [{ title: "Inicio", url: "/" }];
+} else {
+  // Si el último breadcrumb no coincide con la página actual, lo agregamos
+  const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+  if (!lastBreadcrumb || lastBreadcrumb.url !== currentUrl) {
+    breadcrumbs.push({ title: currentTitle, url: currentUrl });
+  }
+}
+
+// Opcional: Limitar el número de elementos en el rastro, por ejemplo a 5
+if (breadcrumbs.length > 5) {
+  breadcrumbs = breadcrumbs.slice(-5);
+}
+
+// Guardamos nuevamente el array en localStorage
+localStorage.setItem(breadcrumbsKey, JSON.stringify(breadcrumbs));
+
+// Renderizamos el HTML de los breadcrumbs:
+// Cada elemento se vuelve un enlace pulsable.
+const container = document.getElementById("breadcrumbs-container");
+if (container) {
+  container.innerHTML = breadcrumbs.map(crumb =>
+    `<a href="${crumb.url}" style="text-decoration: none; color: inherit;">${crumb.title}</a>`
+  ).join(" > ");
+}
+});
+</script>
+<body>
+    <div class="container">
+        <h2>Logs HTTP del Servidor</h2>
+            <button onclick="mostrarLogs()">Mostrar Logs</button>
+            <button onclick="descargarPDF()">Descargar PDF</button>
+            <button onclick="cerrarSesion()">Salir</button>
+        </div>
+
+        <div class="log-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>IP</th>
+                        <th>Método</th>
+                        <th>Ruta</th>
+                        <th>Código</th>
+                        <th>User-Agent</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="logTable">
+                    <!-- Aquí se llenarán los datos -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function cerrarSesion() {
+            window.location.href = "login.html"; // Redirige a la página de login
+        }
+
+        function descargarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const headers = [['ID', 'IP', 'Método', 'Ruta', 'Código', 'User-Agent', 'Fecha']];
+            const data = [];
+            const table = document.getElementById('logTable');
+
+            table.querySelectorAll('tr').forEach(row => {
+                const rowData = Array.from(row.querySelectorAll('td')).map(td => td.textContent);
+                if (rowData.length > 0) {
+                    data.push(rowData);
+                }
+            });
+
+            if (data.length === 0) {
+                alert("No hay datos en la tabla para exportar.");
+                return;
+            }
+
+            doc.autoTable({
+                head: headers,
+                body: data,
+            });
+
+            doc.save('logs_http.pdf');
+        }
+
+        async function mostrarLogs() {
+            try {
+                const response = await fetch('/api/logs-http');
+                const data = await response.json();
+                const tableBody = document.getElementById('logTable');
+                tableBody.innerHTML = '';
+
+                data.forEach(log => {
+                    const row = `<tr>
+                        <td>${log.ID}</td>
+                        <td>${log.IP}</td>
+                        <td>${log.Metodo}</td>
+                        <td>${log.Ruta}</td>
+                        <td>${log.codigo_estado}</td>
+                        <td>${log.User_Agent}</td>
+                        <td>${log.Fecha}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+
+            } catch (error) {
+                console.error('❌ Error al obtener logs:', error);
+            }
+        }
+    </script>
+    <script src="scrips.js"></script>
+</body>
+</html>

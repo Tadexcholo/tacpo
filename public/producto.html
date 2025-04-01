@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+  <div class="product-detail" id="productDetail">
+    <!-- Aquí se cargará la información del producto -->
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+      if (productId) {
+        const response = await fetch(`/api/trabajos/${productId}`);
+        if (response.ok) {
+          const product = await response.json();
+          document.getElementById("productDetail").innerHTML = `
+            <h1>${product.tipo}</h1>
+            <img src="/imagenes/${product.imagen}" alt="${product.tipo}">
+            <p><strong>Material:</strong> ${product.material}</p>
+            <p><strong>Precio:</strong> $${product.costo}</p>
+            <p><strong>Tamaño:</strong> ${product.tamano}</p>
+          `;
+        }
+      }
+    });
+  </script>
+  <div class="card">
+    <!-- Después de mostrar el detalle del producto -->
+<button class="btn btn-danger" onclick="removeFromCart(productId)">Eliminar del Carrito</button>
+
+    <button onclick="location.href='index.html'">Regresar</button>
+    </div>
+</body>
+</html>

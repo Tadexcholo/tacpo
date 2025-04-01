@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basar Allende - Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles4.css" rel="stylesheet">
+</head>
+<body>
+    <div id="breadcrumbs-container"></div>
+    <!-- Carrito en la esquina derecha -->
+    <div id="cartSidebar" style="position: fixed; right: 0; top: 50px; width: 200px; height: calc(100% - 500px); background: #f1f1f1; padding: 10px; border-left: 1px solid #ccc; overflow-y: auto; z-index: 100;">
+        <h4>Carrito de Compras</h4>
+        <ul id="cartItemsList" style="list-style: none; padding: 0; overflow-y: auto;"></ul>
+        <button id="checkoutButton" class="btn btn-primary" style="width: 100%;">Comprar</button>
+    </div>
+    
+  
+    <header class="hero">
+        <h1 data-translate="greeting">Bienvenidos a Basar Allende</h1>
+        <p data-translate="description">Descubre lo mejor en productos de segunda mano con calidad y garantía.</p>
+    </header>
+    
+    <div class="button-container">
+        <button type="button" onclick="location.href='login.html'" data-translate="login">Inicia sesión</button>
+        <button onclick="location.href='mision.html'" data-translate="mission">Misión</button>
+        <button onclick="location.href='vision.html'" data-translate="vision">Visión</button>
+        <button onclick="location.href='historia.html'" data-translate="history">Historia del negocio</button>
+        <button onclick="location.href='mapa.html'" data-translate="map">Mapa</button>
+    </div>
+
+    <h1 id="greeting" data-translate="greeting">Hello, welcome to our website!</h1>
+    <p id="welcome_message" data-translate="welcome_message">This is an example of a multi-language page.</p>
+
+    <button type="button" onclick="changeLanguage('en')" id="language_en" data-translate="language_en" class="btn btn-link">English</button>
+    <button type="button" onclick="changeLanguage('es')" id="language_es" data-translate="language_es" class="btn btn-link">Español</button>
+
+
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar productos..." data-translate="search_placeholder" onkeyup="searchProducts()">
+            </div>
+        </div>
+        <div class="row" id="productsContainer">
+            </div>
+    </div>
+
+    <footer class="hero">
+        <p data-translate="footer">© 2025 Basar Allende. Todos los derechos reservados.</p>
+        <div class="button-container">
+            <button onclick="location.href='contacto.html'" data-translate="contact">Contacto</button>
+            <button onclick="location.href='galeria.html'" data-translate="gallery">Galería de fotos</button>
+            <button onclick="location.href='ver.html'" data-translate="about">Acerca de nosotros</button>
+        </div>    
+    </footer>
+
+    <script src="scripts.js"></script> <script src="language.js"></script> </body>
+</html>

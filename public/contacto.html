@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="contact_page_title">Contacto - Basar Allende</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="cons/styles3.css" rel="stylesheet">
+    <script src="language.js"></script> <!-- Script para traducciones -->
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/api/breadcrumbs')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.createElement('nav');
+                    container.innerHTML = `<p>${data.breadcrumbs}</p>`;
+                    document.body.prepend(container);
+                })
+                .catch(error => console.error('Error cargando breadcrumbs:', error));
+        });
+    </script>
+    
+    <div class="container">
+        <div id="breadcrumbs-container"></div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const breadcrumbsKey = "breadcrumbs";
+                let breadcrumbs = JSON.parse(localStorage.getItem(breadcrumbsKey)) || [];
+                
+                const currentTitle = document.title || "Página";
+                const currentUrl = window.location.pathname;
+                
+                if (currentUrl === "/" || currentUrl === "/index.html") {
+                    breadcrumbs = [{ title: "Inicio", url: "/" }];
+                } else {
+                    const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+                    if (!lastBreadcrumb || lastBreadcrumb.url !== currentUrl) {
+                        breadcrumbs.push({ title: currentTitle, url: currentUrl });
+                    }
+                }
+                
+                if (breadcrumbs.length > 5) {
+                    breadcrumbs = breadcrumbs.slice(-5);
+                }
+                
+                localStorage.setItem(breadcrumbsKey, JSON.stringify(breadcrumbs));
+                
+                const container = document.getElementById("breadcrumbs-container");
+                if (container) {
+                    container.innerHTML = breadcrumbs.map(crumb =>
+                        `<a href="${crumb.url}" style="text-decoration: none; color: inherit;">${crumb.title}</a>`
+                    ).join(" > ");
+                }
+            });
+        </script>
+        
+        <h1 data-translate="contact_title">Contacto</h1>
+        <p data-translate="contact_description">Déjanos tu mensaje y te responderemos lo antes posible.</p>
+        
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="nombre" data-translate="name_label">Nombre:</label>
+                <input type="text" id="nombre" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="correo" data-translate="email_label">Correo Electrónico:</label>
+                <input type="email" id="correo" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono" data-translate="phone_label">Teléfono:</label>
+                <input type="tel" id="telefono" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="mensaje" data-translate="message_label">Mensaje:</label>
+                <textarea id="mensaje" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit" data-translate="send_button">Enviar</button>
+        </form>
+        
+        <p id="contactMessage"></p> 
+        <a href="index.html" class="btn btn-secondary mt-3" data-translate="return_home">Regresar a Inicio</a>
+    </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            const nombre = document.getElementById("nombre").value.trim();
+            const correo = document.getElementById("correo").value.trim();
+            const telefono = document.getElementById("telefono").value.trim();
+            const mensaje = document.getElementById("mensaje").value.trim();
+            const contactMessage = document.getElementById("contactMessage");
+
+            if (!nombre || !correo || !telefono || !mensaje) {
+                contactMessage.innerText = "Todos los campos son obligatorios.";
+                contactMessage.style.color = "red";
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/enviar-correo", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nombre, correo, telefono, mensaje })
+                });
+
+                const data = await response.json();
+                contactMessage.innerText = data.message;
+                contactMessage.style.color = data.success ? "green" : "red";
+
+                if (data.success) {
+                    document.getElementById("contactForm").reset();
+                }
+            } catch (error) {
+                console.error("Error en el envío de correo:", error);
+                contactMessage.innerText = "Hubo un error al enviar el mensaje. Intenta nuevamente.";
+                contactMessage.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>

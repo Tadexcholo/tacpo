@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="about_page_title">Acerca de Nosotros - Basar Allende</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles2.css">
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        p {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="breadcrumbs-container"></div>
+        <h1 id="about_title">Acerca de Nosotros</h1>
+        <h2 id="our_history_title1">Nuestra Historia</h2>
+        <p id="our_history_text">Basar Allende nació con la misión de ofrecer productos de segunda mano de calidad...</p>
+        <h2 id="mission_title1">Misión</h2>
+        <p id="mission1_text">Promover la economía circular proporcionando productos reutilizables...</p>
+        <h2 id="vision_title">Visión</h2>
+        <p id="vision_text">Ser el referente en la venta de productos de segunda mano en la región...</p>
+        <h2 id="values_title">Valores</h2>
+        <ul style="text-align: left;">
+            <li><strong id="commitment_title">Compromiso:</strong> <span id="commitment_text">Trabajamos con pasión...</span></li>
+            <li><strong id="honesty_title">Honestidad:</strong> <span id="honesty_text">Garantizamos transparencia...</span></li>
+            <li><strong id="sustainability_title">Sostenibilidad:</strong> <span id="sustainability_text">Fomentamos la reutilización...</span></li>
+            <li><strong id="quality_title">Calidad:</strong> <span id="quality_text">Seleccionamos productos...</span></li>
+            <li><strong id="community_title">Comunidad:</strong> <span id="community_text">Apoyamos la economía local...</span></li>
+        </ul>
+        <h2 id="team_title">Nuestro Equipo</h2>
+        <p id="team_text">Contamos con un equipo comprometido de colaboradores...</p>
+        <button class="btn btn-primary btn-back" id="return_button" onclick="location.href='index.html'">Regresar</button>
+    </div>
+
+    <!-- Cargar traducción -->
+    <script>
+        async function loadLanguage() {
+            let lang = localStorage.getItem("language") || "es"; // Idioma predeterminado
+            try {
+                const response = await fetch(`locales/${lang}.json`);
+                if (!response.ok) throw new Error(`Error al cargar el archivo JSON: ${response.status}`);
+                
+                const translations = await response.json();
+                const idsToTranslate = [
+                    "about_page_title", "about_title", "our_history_title1", "our_history_text",
+                    "mission_title1", "mission1_text", "vision_title", "vision_text",
+                    "values_title", "commitment_title", "commitment_text", "honesty_title",
+                    "honesty_text", "sustainability_title", "sustainability_text", "quality_title",
+                    "quality_text", "community_title", "community_text", "team_title", "team_text",
+                    "return_button"
+                ];
+
+                idsToTranslate.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element && translations[id]) {
+                        element.textContent = translations[id];
+                    }
+                });
+            } catch (error) {
+                console.error("Error al cargar traducciones:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadLanguage);
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+body {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f9fa;
+}
+.container {
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    color: #007bff;
+}
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.btn-submit {
+    margin-top: 20px;
+}
+#contactMessage {
+    margin-top: 15px;
+    font-weight: bold;
+}
+  
+  /* Estilo del Hero */
+  .hero {
+    background: linear-gradient(to right, #0066cc, #003366);
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  /* Sección de información */
+  .info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .info div {
+    background: white;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  /* Estilo del Buscador */
+  .search-container {
+    margin: 20px;
+  }
+  
+  #searchInput {
+    width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Contenedor de productos */
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Tarjetas de productos */
+  .product-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  button {
+    background: linear-gradient(to right, #0066cc, #003366);
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+  .product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .product-card p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .product-card .btn {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background: linear-gradient(to right, #0066cc, #003366);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .product-card .btn:hover {
+    background: #003366;
+  }
+  

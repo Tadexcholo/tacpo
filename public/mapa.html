@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="map_page_title">Mapa de Allende, Coahuila</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="styles2.css">
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="breadcrumbs-container"></div>
+        
+        <h1 data-translate="map_title">Mapa de Allende, Coahuila</h1>
+        <div id="map"></div>
+        
+        <button onclick="location.href='index.html'" data-translate="return_button">Regresar</button>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Clave para almacenar los breadcrumbs en localStorage
+        const breadcrumbsKey = "breadcrumbs";
+
+        // Leer o inicializar el array de breadcrumbs
+        let breadcrumbs = JSON.parse(localStorage.getItem(breadcrumbsKey)) || [];
+
+        // Datos de la página actual:
+        // Utilizamos document.title para el texto (asegúrate de definirlo en cada página)
+        const currentTitle = document.title || "Página";
+        const currentUrl = window.location.pathname;
+
+        // Si el usuario se encuentra en la página de inicio ("/" o "/index.html"),
+        // reiniciamos el historial a solo "Inicio".
+        if (currentUrl === "/" || currentUrl === "/index.html") {
+            breadcrumbs = [{ title: "Inicio", url: "/" }];
+        } else {
+            // Si el último breadcrumb no coincide con la página actual, lo agregamos
+            const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+            if (!lastBreadcrumb || lastBreadcrumb.url !== currentUrl) {
+                breadcrumbs.push({ title: currentTitle, url: currentUrl });
+            }
+        }
+
+        // Opcional: Limitar el número de elementos en el rastro, por ejemplo a 5
+        if (breadcrumbs.length > 5) {
+            breadcrumbs = breadcrumbs.slice(-5);
+        }
+
+        // Guardamos nuevamente el array en localStorage
+        localStorage.setItem(breadcrumbsKey, JSON.stringify(breadcrumbs));
+
+        // Renderizamos el HTML de los breadcrumbs:
+        // Cada elemento se vuelve un enlace pulsable.
+        const container = document.getElementById("breadcrumbs-container");
+        if (container) {
+            container.innerHTML = breadcrumbs.map(crumb =>
+                `<a href="${crumb.url}" style="text-decoration: none; color: inherit;">${crumb.title}</a>`
+            ).join(" > ");
+        }
+    });
+    </script>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('map').setView([28.3462, -100.8507], 14);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // También podríamos traducir este texto con una clave en el JSON
+            var popupText = document.querySelector('[data-translate="map_popup"]') ? 
+                document.querySelector('[data-translate="map_popup"]').textContent : 
+                'Allende, Coahuila, México';
+
+            L.marker([28.3462, -100.8507]).addTo(map)
+                .bindPopup(popupText)
+                .openPopup();
+        });
+    </script>
+    <script src="language.js"></script>
+</body>
+</html>

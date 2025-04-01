@@ -1,0 +1,75 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Contenedor General */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 95%;
+    width: auto; /* Se adapta al contenido */
+    margin: auto;
+}
+
+/* Botones */
+.button-container {
+    margin-top: 10px;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    margin: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Tabla y Contenedor de Logs */
+.log-container {
+    max-height: 1400px;
+    overflow-y: auto; /* Permite desplazamiento solo en vertical */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Ajustes para que la tabla no se corte */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: auto; /* Permite que las columnas se expandan */
+}
+
+/* Encabezados y Celdas */
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: normal; /* Permite que el texto se divida en varias líneas */
+}
+
+/* Encabezados con color de fondo */
+th {
+    background-color: #f2f2f2;
+}

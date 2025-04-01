@@ -1,0 +1,13 @@
+# Dependencias y caché
+node_modules/
+coverage/
+scannerwork/
+logs/
+
+# Variables de entorno
+.env
+
+# Configuración específica del IDE
+.vscode/
+.DS_Store
+ 

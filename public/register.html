@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer 
+    integrity="sha384-TU_HASH_GENERADO_AQUÍ" 
+    crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="breadcrumbs-container"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Clave para almacenar los breadcrumbs en localStorage
+    const breadcrumbsKey = "breadcrumbs";
+    
+    // Leer o inicializar el array de breadcrumbs
+    let breadcrumbs = JSON.parse(localStorage.getItem(breadcrumbsKey)) || [];
+    
+    // Datos de la página actual:
+    // Utilizamos document.title para el texto (asegúrate de definirlo en cada página)
+    const currentTitle = document.title || "Página";
+    const currentUrl = window.location.pathname;
+    
+    // Si el usuario se encuentra en la página de inicio ("/" o "/index.html"),
+    // reiniciamos el historial a solo "Inicio".
+    if (currentUrl === "/" || currentUrl === "/index.html") {
+      breadcrumbs = [{ title: "Inicio", url: "/" }];
+    } else {
+      // Si el último breadcrumb no coincide con la página actual, lo agregamos
+      const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+      if (!lastBreadcrumb || lastBreadcrumb.url !== currentUrl) {
+        breadcrumbs.push({ title: currentTitle, url: currentUrl });
+      }
+    }
+    
+    // Opcional: Limitar el número de elementos en el rastro, por ejemplo a 5
+    if (breadcrumbs.length > 5) {
+      breadcrumbs = breadcrumbs.slice(-5);
+    }
+    
+    // Guardamos nuevamente el array en localStorage
+    localStorage.setItem(breadcrumbsKey, JSON.stringify(breadcrumbs));
+    
+    // Renderizamos el HTML de los breadcrumbs:
+    // Cada elemento se vuelve un enlace pulsable.
+    const container = document.getElementById("breadcrumbs-container");
+    if (container) {
+      container.innerHTML = breadcrumbs.map(crumb =>
+        `<a href="${crumb.url}" style="text-decoration: none; color: inherit;">${crumb.title}</a>`
+      ).join(" > ");
+    }
+  });
+</script>
+
+    <h2>Registro</h2>
+    <form id="registerForm">
+      <input type="text" id="newUsername" placeholder="Nuevo Usuario" required>
+      <input type="email" id="newEmail" placeholder="Correo Electrónico" required>
+      <input type="password" id="newPassword" placeholder="Nueva Contraseña" required>
+      <input type="tel" id="newPhone" placeholder="Número de Teléfono" required>
+      <select id="countrySelect" required>
+        <option value="">Selecciona un país</option>
+        <option value="USA">Estados Unidos (+1)</option>
+        <option value="MX">México (+52)</option>
+        <option value="CO">Colombia (+57)</option>
+        <option value="UK">Reino Unido (+44)</option>
+      </select>
+      <div class="g-recaptcha" data-sitekey="6LeL_wArAAAAAAL4oxf6qhikvTkwJYg_M8EpjpJt"></div>
+      <button type="submit" id="registerButton">Registrarse</button>
+    </form>
+
+    <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    <p id="registerMessage"></p>
+  </div>
+
+  <!-- Modal para ingresar el código SMS -->
+  <div id="smsModal" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h5 class="modal-title">Verifica tu teléfono</h5>
+        <button type="button" class="btn-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Ingresa el código de verificación que recibiste por SMS:</p>
+        <input type="text" id="smsCodeInput" placeholder="Código de verificación" required>
+        <button id="verifyPhoneButton">Verificar Teléfono</button>
+        <p id="verifyMessage" style="color: red;"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función para cerrar el modal
+    function closeModal() {
+      document.getElementById("smsModal").style.display = "none";
+    }
+
+    // Mapeo de países y sus prefijos internacionales
+    const countryDialingCodes = {
+      "USA": "+1",
+      "MX": "+52",
+      "CO": "+57",
+      "UK": "+44"
+    };
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("countrySelect").addEventListener("change", function () {
+        const selectedCountry = this.value;
+        const phoneInput = document.getElementById("newPhone");
+        const code = countryDialingCodes[selectedCountry];
+        if (code && !phoneInput.value.startsWith(code)) {
+          phoneInput.value = code;
+        }
+      });
+
+      // Enviar formulario de registro
+      document.getElementById("registerForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("newUsername").value.trim();
+        const email = document.getElementById("newEmail").value.trim();
+        const password = document.getElementById("newPassword").value.trim();
+        const phone = document.getElementById("newPhone").value.trim();
+        const country = document.getElementById("countrySelect").value.trim();
+        const recaptchaResponse = grecaptcha.getResponse();
+
+        const registerMessage = document.getElementById("registerMessage");
+
+        if (!username || !email || !password || !phone || !country || !recaptchaResponse) {
+          registerMessage.innerText = "Todos los campos son obligatorios.";
+          return;
+        }
+
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+          alert("❌ El correo debe ser válido.");
+          return;
+        }
+
+        if (username === password) {
+          alert("❌ El nombre de usuario no puede ser igual a la contraseña.");
+          return;
+        }
+
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordPattern.test(password)) {
+          alert("❌ La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial.");
+          return;
+        }
+
+        const phonePattern = /^[+0-9]{10,15}$/;
+        if (!phonePattern.test(phone)) {
+          alert("❌ El número de teléfono no es válido.");
+          return;
+        }
+
+        // Enviar datos de registro al servidor
+        fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre_usuario: username,
+            correo: email,
+            contra: password,
+            numero: phone,
+            pais: country,
+            'g-recaptcha-response': recaptchaResponse
+          })
+        })
+        .then(response => {
+          // Validar si la respuesta es JSON
+          if (response.headers.get('content-type')?.includes('application/json')) {
+            return response.json();
+          } else {
+            throw new Error("El servidor devolvió un formato inesperado. Verifica el backend.");
+          }
+        })
+        .then(data => {
+          if (data.msg && data.msg.includes("SMS")) {
+            alert(data.msg);
+            document.getElementById("smsModal").style.display = "block";
+            document.getElementById("registerForm").style.display = "none";
+          } else {
+            registerMessage.innerText = data.msg || "Error al registrar usuario. Intenta más tarde.";
+          }
+        })
+        .catch(error => {
+          console.error("Error en la solicitud:", error);
+          registerMessage.innerText = "Error en el servidor. Inténtalo más tarde.";
+          grecaptcha.reset(); // Restablecer reCAPTCHA
+        });
+      });
+
+      // Verificar código SMS
+      document.getElementById("verifyPhoneButton").addEventListener("click", function (e) {
+        e.preventDefault();
+        const smsCode = document.getElementById("smsCodeInput").value.trim();
+        const phone = document.getElementById("newPhone").value.trim();
+        const verifyMessage = document.getElementById("verifyMessage");
+
+        if (!smsCode) {
+          verifyMessage.innerText = "Por favor ingresa el código de verificación.";
+          return;
+        }
+
+        fetch('/api/register/verifyRegistration/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ numero: phone, codigo_confirmacion: smsCode })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        alert(data.message);
+        window.location.href = "/dashboard.html";
+    } else {
+        verifyMessage.innerText = data.msg || "Código incorrecto.";
+    }
+})
+.catch(error => {
+    console.error("Error al verificar SMS:", error);
+    verifyMessage.innerText = "Error en el servidor. Inténtalo más tarde.";
+});
+
+      });
+    });
+  </script>
+</body>
+</html>

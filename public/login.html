@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="login_page_title">Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="breadcrumbs-container"></div>
+    
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const breadcrumbsKey = "breadcrumbs";
+            let breadcrumbs = JSON.parse(localStorage.getItem(breadcrumbsKey)) || [];
+            const currentTitle = document.title || "Página";
+            const currentUrl = window.location.pathname;
+            
+            if (currentUrl === "/" || currentUrl === "/index.html") {
+              breadcrumbs = [{ title: "Inicio", url: "/" }];
+            } else {
+              const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+              if (!lastBreadcrumb || lastBreadcrumb.url !== currentUrl) {
+                breadcrumbs.push({ title: currentTitle, url: currentUrl });
+              }
+            }
+            
+            if (breadcrumbs.length > 5) {
+              breadcrumbs = breadcrumbs.slice(-5);
+            }
+            
+            localStorage.setItem(breadcrumbsKey, JSON.stringify(breadcrumbs));
+            
+            const container = document.getElementById("breadcrumbs-container");
+            if (container) {
+              container.innerHTML = breadcrumbs.map(crumb =>
+                `<a href="${crumb.url}" style="text-decoration: none; color: inherit;">${crumb.title}</a>`
+              ).join(" > ");
+            }
+          });
+        </script>
+        
+        <h2 id="login_title">Iniciar Sesión</h2>
+        <form id="loginForm">
+            <input type="text" id="nombre_usuario" placeholder="Usuario" required>
+            <input type="password" id="contra" placeholder="Contraseña" required>
+            <button type="button" id="loginButton">Ingresar</button>
+        </form>
+        
+        <!-- Enlaces de cuenta -->
+        <button type="button" onclick="location.href='register.html'" >Regístrate</button>
+        <button type="button" onclick="location.href='recuperar.html'" >Recuperar contraseña</button>
+        <button type="button" onclick="location.href='index.html'" >Regresar</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("success")) {
+                alert("✅ Usuario registrado exitosamente. Ahora inicia sesión.");
+            }
+        });
+    </script>
+<script src="scrips.js" defer></script>
+</body>
+</html>

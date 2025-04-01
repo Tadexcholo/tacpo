@@ -1,0 +1,6 @@
+projectKey=prueva
+serverUrl=http://localhost:9000
+serverVersion=25.3.0.104237
+dashboardUrl=http://localhost:9000/dashboard?id=prueva
+ceTaskId=d4986299-f452-4d7c-a046-d80ba44a443b
+ceTaskUrl=http://localhost:9000/api/ce/task?id=d4986299-f452-4d7c-a046-d80ba44a443b

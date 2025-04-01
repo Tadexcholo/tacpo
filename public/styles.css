@@ -1,0 +1,105 @@
+:root {
+    --color-primary: #3498db;
+    --color-secondary: #2ecc71;
+    --color-background: #f4f4f4;
+    --color-text: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    flex: 1; 
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.grid-productos, .grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input, select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: var(--color-primary);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; 
+}
+.card-img-top {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+    height: 300px; /* Define una altura fija para todas las imágenes */
+    object-fit: cover; /* Hace que la imagen se recorte para llenar el área sin distorsionarse */
+}

@@ -1,0 +1,110 @@
+{
+  "site_title": "Basar Allende - Inicio",
+  "greeting": "Bienvenidos a Basar Allende",
+  "description": "Descubre lo mejor en productos de segunda mano con calidad y garantía.",
+  "login": "Inicia sesión",
+  "mission": "Misión",
+  "vision": "Visión",
+  "history": "Historia del negocio",
+  "map": "Mapa",
+  "footer": "© 2025 Basar Allende. Todos los derechos reservados.",
+  "contact": "Contacto",
+  "gallery": "Galería de fotos",
+  "about": "Acerca de nosotros",
+  "language_en": "Inglés",
+  "language_es": "Español",
+  
+  "mission_page_title": "Misión - Basar Allende",
+  "mission_title": "Nuestra Misión",
+  "mission_text": "Ofrecer productos de segunda mano en excelente estado, brindando confianza, accesibilidad y fomentando la reutilización para un consumo más sostenible.",
+  "return_button": "Regresar",
+
+  "map_page_title": "Mapa de Allende, Coahuila",
+  "map_title": "Mapa de Allende, Coahuila",
+  "map_popup": "Allende, Coahuila, México",
+
+  
+    "contact_page_title": "Contacto - Basar Allende",
+    "contact_title": "Contacto",
+    "contact_description": "Déjanos tu mensaje y te responderemos lo antes posible.",
+    "name_label": "Nombre:",
+    "email_label": "Correo Electrónico:",
+    "phone_label": "Teléfono:",
+    "message_label": "Mensaje:",
+    "send_button": "Enviar",
+    "return_home": "Regresar a Inicio",
+
+    
+      "dashboard_page_title": "Dashboard - Gestión de Trabajos",
+      "welcome_message": "Bienvenido,",
+      "search_placeholder": "Buscar trabajos...",
+      "logout_button": "Cerrar sesión",
+      "view_logs": "📜 Ver Logs del Servidor",
+      "create_job_button": "Crear Trabajo",
+      "job_modal_title": "Crear / Editar Trabajo",
+      "job_type_label": "Tipo",
+      "job_material_label": "Material",
+      "job_cost_label": "Costo",
+      "job_size_label": "Tamaño",
+      "job_image_label": "Imagen",
+      "save_button": "Guardar",
+      "home_breadcrumb": "Inicio",
+    
+      
+        "gallery_page_title": "Acerca de Nosotros - Basar Allende",
+        "breadcrumbs_home": "Inicio",
+        "about_us_title": "Acerca de Nosotros",
+        "our_history_title": "Nuestra Historia",
+        "our_history_description": "Basar Allende nació con la misión de ofrecer productos de segunda mano de calidad...",
+        "gallery_title": "Galería de Fotos",
+       
+        
+          "history_page_title": "Historia - Basar Allende",
+          "history_title": "Nuestra Historia",
+          "history_description1": "Basar Allende nació con el propósito de ofrecer una alternativa accesible y de calidad para quienes buscan productos de segunda mano. Fundado en el corazón de Allende, Coahuila, nuestro negocio comenzó como un pequeño mercado local, con la visión de fomentar la reutilización responsable y dar una segunda oportunidad a objetos con gran valor.",
+          "history_description2": "Con el tiempo, hemos crecido y evolucionado, adaptándonos a las necesidades de nuestra comunidad. Hoy en día, seguimos comprometidos con la economía circular, brindando productos seleccionados y garantizando la satisfacción de nuestros clientes."
+         
+          ,"dashboard_title": "Dashboard - Gestión de Trabajos",
+            "login_page_title": "Iniciar Sesión",
+            "login_title": "Iniciar Sesión",
+            "login_button": "Ingresar",
+            "no_account_text": "¿No tienes cuenta?",
+            "back_text": "¿No tienes cuenta?",
+            "back_link": "Regresar"
+          
+            ,
+            
+              "about_page_title": "Acerca de Nosotros - Basar Allende",
+              "about_title": "Acerca de Nosotros",
+              "our_history_title1": "Nuestra Historia",
+              "our_history_text": "Basar Allende nació con la misión de ofrecer productos de segunda mano de calidad...",
+              "mission_title1": "Misión",
+              "mission1_text": "Promover la economía circular proporcionando productos reutilizables...",
+              "vision_title": "Visión",
+              "vision_text": "Ser el referente en la venta de productos de segunda mano en la región...",
+              "values_title": "Valores",
+              "commitment_title": "Compromiso",
+              "commitment_text": "Trabajamos con pasión...",
+              "honesty_title": "Honestidad",
+              "honesty_text": "Garantizamos transparencia...",
+              "sustainability_title": "Sostenibilidad",
+              "sustainability_text": "Fomentamos la reutilización...",
+              "quality_title": "Calidad",
+              "quality_text": "Seleccionamos productos...",
+              "community_title": "Comunidad",
+              "community_text": "Apoyamos la economía local...",
+              "team_title": "Nuestro Equipo",
+              "team_text": "Contamos con un equipo comprometido de colaboradores...",
+             
+              
+                "vision_page_title": "Visión - Basar Allende",
+                "vision_titles": "Nuestra Visión",
+                "vision_texts": "Ser el bazar de segunda mano más confiable de Allende, Coahuila, ofreciendo productos de calidad y promoviendo el consumo responsable."
+                
+            
+            
+          
+          
+        
+
+}

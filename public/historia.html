@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="history_page_title">Historia - Basar Allende</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles2.css">
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+        }
+        p {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="breadcrumbs-container"></div>
+
+        <h1 id="history_title">Nuestra Historia</h1>
+        <p id="history_description1">
+            Basar Allende nació con el propósito de ofrecer una alternativa accesible y de calidad para quienes buscan productos de segunda mano. Fundado en el corazón de Allende, Coahuila, nuestro negocio comenzó como un pequeño mercado local, con la visión de fomentar la reutilización responsable y dar una segunda oportunidad a objetos con gran valor.
+        </p>
+        <p id="history_description2">
+            Con el tiempo, hemos crecido y evolucionado, adaptándonos a las necesidades de nuestra comunidad. Hoy en día, seguimos comprometidos con la economía circular, brindando productos seleccionados y garantizando la satisfacción de nuestros clientes.
+        </p>
+        <button class="btn btn-primary btn-back" id="return_button" onclick="location.href='index.html'">Regresar</button>
+    </div>
+
+    <!-- Cargar traducción -->
+    <script>
+        async function loadLanguage() {
+            let lang = localStorage.getItem("language") || "es"; // Idioma predeterminado: español
+            try {
+                let response = await fetch(`locales/${lang}.json`);
+                let translations = await response.json();
+
+                document.getElementById("history_page_title").textContent = translations.history_page_title;
+                document.getElementById("history_title").textContent = translations.history_title;
+                document.getElementById("history_description1").textContent = translations.history_description1;
+                document.getElementById("history_description2").textContent = translations.history_description2;
+                document.getElementById("return_button").textContent = translations.return_button;
+            } catch (error) {
+                console.error("Error loading translations:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadLanguage);
+    </script>
+
+</body>
+</html>

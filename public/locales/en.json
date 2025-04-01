@@ -1,0 +1,108 @@
+{
+  "site_title": "Basar Allende - Home",
+  "greeting": "Welcome to Basar Allende",
+  "description": "Discover the best in second-hand products with quality and warranty.",
+  "login": "Login",
+  "mission": "Mission",
+  "vision": "Vision",
+  "history": "Business History",
+  "map": "Map",
+  "footer": "© 2025 Basar Allende. All rights reserved.",
+  "contact": "Contact",
+  "gallery": "Photo Gallery",
+  "about": "About Us",
+  "language_en": "English",
+  "language_es": "Spanish",
+  
+  "mission_page_title": "Mission - Basar Allende",
+  "mission_title": "Our Mission",
+  "mission_text": "To offer second-hand products in excellent condition, providing trust, accessibility, and promoting reuse for more sustainable consumption.",
+  "return_button": "Return",
+
+    "map_page_title": "Map of Allende, Coahuila",
+    "map_title": "Map of Allende, Coahuila",
+    "map_popup": "Allende, Coahuila, Mexico",
+
+    
+      "contact_page_title": "Contact - Basar Allende",
+      "contact_title": "Contact",
+      "contact_description": "Leave us a message and we will get back to you as soon as possible.",
+      "name_label": "Name:",
+      "email_label": "Email:",
+      "phone_label": "Phone:",
+      "message_label": "Message:",
+      "send_button": "Send",
+      "return_home": "Return to Home",
+      
+        "dashboard_page_title": "Dashboard - Job Management",
+        "welcome_message": "Welcome,",
+        "search_placeholder": "Search jobs...",
+        "logout_button": "Log out",
+        "view_logs": "📜 View Server Logs",
+        "create_job_button": "Create Job",
+        "job_modal_title": "Create / Edit Job",
+        "job_type_label": "Type",
+        "job_material_label": "Material",
+        "job_cost_label": "Cost",
+        "job_size_label": "Size",
+        "job_image_label": "Image",
+        "save_button": "Save",
+        "home_breadcrumb": "Home",
+      
+        
+          "gallery_page_title": "About Us - Basar Allende",
+          "breadcrumbs_home": "Home",
+          "about_us_title": "About Us",
+          "our_history_title": "Our History",
+          "our_history_description": "Basar Allende was founded with the mission of offering high-quality second-hand products...",
+          "gallery_title": "Photo Gallery",
+       
+        
+          
+            "history_page_title": "History - Basar Allende",
+            "history_title": "Our History",
+            "history_description1": "Basar Allende was founded with the purpose of offering an affordable and high-quality alternative for those looking for second-hand products. Founded in the heart of Allende, Coahuila, our business began as a small local market, with the vision of promoting responsible reuse and giving a second chance to valuable objects.",
+            "history_description2": "Over time, we have grown and evolved, adapting to the needs of our community. Today, we remain committed to the circular economy, providing carefully selected products and ensuring customer satisfaction."
+           
+          
+            ,
+              "login_page_title": "Login",
+              "login_title": "Login",
+              "login_button": "Log In",
+              "no_account_text": "Don't have an account?",
+              "back_text": "Don't have an account?",
+              "back_link": "Back",
+                "dashboard_title": "Dashboard - Job Management",
+                
+                  "about_page_title": "About Us - Basar Allende",
+                  "about_title": "About Us",
+                  "our_history_title1": "Our History",
+                  "our_history_text": "Basar Allende was founded with the mission of offering high-quality second-hand products...",
+                  "mission_title1": "Our Mission",
+                  "mission1_text": "To promote the circular economy by providing reusable products...",
+                  "vision_title": "Our Vision",
+                  "vision_text": "To become the leading reference in the sale of second-hand products in the region...",
+                  "values_title": "Our Values",
+                  "commitment_title": "Commitment",
+                  "commitment_text": "We work with passion...",
+                  "honesty_title": "Honesty",
+                  "honesty_text": "We guarantee transparency...",
+                  "sustainability_title": "Sustainability",
+                  "sustainability_text": "We promote reuse...",
+                  "quality_title": "Quality",
+                  "quality_text": "We carefully select our products...",
+                  "community_title": "Community",
+                  "community_text": "We support the local economy...",
+                  "team_title": "Our Team",
+                  "team_text": "We have a committed team of collaborators...",
+              
+                  
+                    "vision_page_title": "Vision - Basar Allende",
+                    "vision_titles": "Our Vision",
+                    "vision_texts": "To be the most reliable second-hand bazaar in Allende, Coahuila, offering quality products and promoting responsible consumption."
+                    
+                
+                
+              
+    
+  }
